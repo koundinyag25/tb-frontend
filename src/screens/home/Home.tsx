@@ -26,7 +26,11 @@ export const Home = () => {
     try {
       setLoading(true);
       const results = await postSearchText(searchText);
-      setSearchResults(results);
+      if (results.data.detail) {
+        message.error("Please try another query");
+      } else {
+        setSearchResults(results);
+      }
     } catch (error) {
       console.error(error);
       message.error("Error fetching data");
