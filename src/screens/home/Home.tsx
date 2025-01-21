@@ -58,9 +58,9 @@ export const Home = () => {
       <div className="p-4  h-[80vh] gap-4 flex">
         <div className="flex flex-col gap-4 w-[70%] overflow-y-auto h-full bg-gray-100">
           {loading ? (
-            <div className="flex justify-center items-center h-full">
+            <div className="flex justify-center flex-col items-center h-full">
               <Spin />
-              please wait while we fetch your data
+              <span>Please wait while we fetch your data</span>
             </div>
           ) : searchResults?.data?.cves.length > 0 ? (
             (searchResults?.data?.cves as CVE[]).map(
@@ -77,9 +77,16 @@ export const Home = () => {
           )}
         </div>
         <div className="flex justify-center items-center w-[30%] h-full bg-gray-100">
-          <div className="w-[80%] h-[80%] block overflow-y-auto">
-            <Markdown>{markdown}</Markdown>
-          </div>
+          {loading ? (
+            <div className="flex justify-center flex-col items-center h-full">
+              <Spin />
+              <span>Getting insights</span>
+            </div>
+          ) : (
+            <div className="w-[80%] h-[80%] block overflow-y-auto">
+              <Markdown>{markdown}</Markdown>
+            </div>
+          )}
         </div>
       </div>
     </div>
