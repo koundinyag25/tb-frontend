@@ -1,4 +1,4 @@
-import { Button, Input, Spin } from "antd";
+import { Button, Input, Spin, message } from "antd";
 import { useState } from "react";
 import { postSearchText } from "src/services/cve";
 import CveCards from "src/components/cveCard";
@@ -29,6 +29,7 @@ export const Home = () => {
       setSearchResults(results);
     } catch (error) {
       console.error(error);
+      message.error("Error fetching data");
     } finally {
       setLoading(false);
     }
@@ -56,7 +57,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="p-4  h-[80vh] gap-4 flex">
-        <div className="flex flex-col gap-4 w-[70%] overflow-y-auto h-full bg-gray-100">
+        <div className="flex flex-col gap-4 w-[70%] overflow-y-auto h-full bg-gray-100 rounded-lg">
           {loading ? (
             <div className="flex justify-center flex-col items-center h-full">
               <Spin />
@@ -76,17 +77,30 @@ export const Home = () => {
             </div>
           )}
         </div>
-        <div className="flex justify-center items-center w-[30%] h-full bg-gray-100">
-          {loading ? (
-            <div className="flex justify-center flex-col items-center h-full">
-              <Spin />
-              <span>Getting insights</span>
-            </div>
-          ) : (
-            <div className="w-[80%] h-[80%] block overflow-y-auto">
-              <Markdown>{markdown}</Markdown>
-            </div>
-          )}
+        <div className="w-[30%] h-full bg-gray-100 rounded-lg">
+          <div className="text-sm font-bold p-2 w-full text-center">
+            Insights
+          </div>
+          <div className="flex justify-center items-center flex-col gap-2">
+            {loading ? (
+              <div className="flex justify-center h-[60vh] flex-col items-center h-full">
+                <Spin />
+                <span>Getting insights</span>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center h-full block overflow-y-auto">
+                {markdown && searchResults?.data?.cves.length > 0 ? (
+                  <div className="w-[80%] h-[80%] block overflow-y-auto">
+                    <Markdown>{markdown}</Markdown>
+                  </div>
+                ) : (
+                  <div className="flex justify-center items-center h-[60vh] text-center">
+                    Fetch data to get insights
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
