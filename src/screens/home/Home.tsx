@@ -39,7 +39,6 @@ export const Home = () => {
     }
   };
 
-  console.log({ searchResults });
   const markdown = searchResults?.insights;
 
   console.log({ markdown });
