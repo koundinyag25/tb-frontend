@@ -41,7 +41,7 @@ export const Home = () => {
 
   const markdown = searchResults?.insights;
 
-  console.log({ markdown });
+  console.log({ cves: searchResults?.data?.cves });
 
   return (
     <div className="h-full w-full">
@@ -91,7 +91,7 @@ export const Home = () => {
                 <span>Getting insights</span>
               </div>
             ) : (
-              <div className="flex justify-center items-center h-full block overflow-y-auto">
+              <div className="flex justify-center items-center h-[70vh] block overflow-y-auto">
                 {markdown && searchResults?.data?.cves.length > 0 ? (
                   <div className="w-[80%] h-[80%] block overflow-y-auto">
                     <Markdown className="prose">{markdown}</Markdown>

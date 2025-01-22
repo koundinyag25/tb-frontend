@@ -47,11 +47,11 @@ const CVECard: React.FC<CVECardProps> = ({ cve }) => {
         </div>
         <div className="mb-4">
           <Text className="block text-gray-600">
-            <strong>EPSS Score:</strong> {cve.epss_score.toFixed(5)}
+            <strong>EPSS Score:</strong> {cve.epss_score?.toFixed(5)}
           </Text>
           <Text className="block text-gray-600">
             <strong>EPSS Percentile:</strong>{" "}
-            {Math.round(cve.epss_percentile * 100)}%
+            {cve.epss_percentile ? Math.round(cve.epss_percentile * 100) : 0}%
           </Text>
         </div>
       </div>
