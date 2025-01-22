@@ -3,7 +3,7 @@ import http from "src/integrations/http";
 export const postSearchText = async (searchText: string) => {
   const response = await http.post("/search", {
     prompt: searchText,
-    limit: 50,
+    limit: 200,
   });
   return response.data;
 };

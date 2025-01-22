@@ -32,7 +32,7 @@ const CVECard: React.FC<CVECardProps> = ({ cve }) => {
             {cve.name}
           </Title>
           <Tag color={getSeverityColor(cve.severity)} className="text-sm">
-            Severity: {cve.severity}
+            Severity: {cve.severity ?? "N/A"}
           </Tag>
         </div>
         <div className="mb-4">
