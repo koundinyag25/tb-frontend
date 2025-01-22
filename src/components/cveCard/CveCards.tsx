@@ -61,17 +61,16 @@ const CVECard: React.FC<CVECardProps> = ({ cve }) => {
         </Text>
         <div className="flex flex-row flex-wrap">
           {cve.references.length > 0 ? (
-            cve.references.map((ref, index) => (
-              <Tooltip title={ref}>
-                <a
-                  href={ref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-blue-100 p-1 rounded-md m-1"
-                >
-                  ref-{index + 1}
-                </a>
-              </Tooltip>
+            cve.references.map((ref: any, index: number) => (
+              <div
+                onClick={() => {
+                  console.log(ref);
+                  window.open(ref?.url, "_blank");
+                }}
+                className="bg-blue-100 p-1 rounded-md m-1 cursor-pointer"
+              >
+                ref-{index + 1}
+              </div>
             ))
           ) : (
             <div className="text-gray-500">No references available</div>
