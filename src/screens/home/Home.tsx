@@ -94,7 +94,7 @@ export const Home = () => {
               <div className="flex justify-center items-center h-full block overflow-y-auto">
                 {markdown && searchResults?.data?.cves.length > 0 ? (
                   <div className="w-[80%] h-[80%] block overflow-y-auto">
-                    <Markdown>{markdown}</Markdown>
+                    <Markdown className="prose">{markdown}</Markdown>
                   </div>
                 ) : (
                   <div className="flex justify-center items-center h-[60vh] text-center">
